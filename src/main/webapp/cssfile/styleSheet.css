@@ -1,0 +1,186 @@
+/*General*/
+@font-face {
+    font-family: farsiFont;
+    src: url(/cssfile/yekan.otf);
+url(/cssfile/yekan.ttf);
+}
+
+div {
+    font-family: farsiFont;
+    font-size: large;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+    font-size: large;
+}
+
+body {
+    height: 100%;
+    background-color: rgba(255, 146, 0, 0.46);
+    direction: rtl;
+}
+
+
+
+.cleaner {
+    clear: both;
+    height: 0;
+    font-size: 0;
+    visibility: hidden;
+}
+
+#wrapper {
+    width: 70%;
+    margin: 60px auto 0 auto;
+    height: 90%;
+    horiz-align: center;
+}
+
+.title {
+    background-color: #003333;
+    margin: 5% 10% 0 10%;
+    height: 80px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.title h1 {
+    color: white;
+}
+
+
+.content {
+    margin: 19px auto 0 auto;
+}
+
+.layer-out {
+    background-color: #FFFFFF;
+    border-radius: 5em;
+    border-color: #0b5620;
+    padding: 2em 5% 5em 5%;
+    margin: 40px 40px 40px 40px;
+    text-align: center;
+
+}
+
+.layer {
+    background-color: #0b5620;
+    padding: 2em 5% 5em 5%;
+    margin: 40px 40px 40px 40px;
+
+}
+
+.layer-in {
+    background-color: #FFFFFF;
+    border-radius: 5em;
+    padding: 2em 5% 5em 5%;
+    margin: 40px 40px 40px 40px;
+    text-align: center;
+
+}
+
+.layer-in p {
+    line-height: 1.6;
+    margin: 0 0 10px 25px;
+    color: #0b5620;
+    font-size: x-large;
+    display: ruby;
+}
+
+.form {
+    display: inline;
+    alignment: center;
+}
+
+.button {
+    background-color: #ff9200;
+    border-color: #ff9200;
+    color: white;
+    padding: 15px 20px;
+    margin: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    font-family: farsiFont;
+
+}
+
+.button:hover {
+    background-color: white;
+    color: #ff9200;
+}
+
+.layer-in a {
+    background-color: #ff9200;
+    border: solid #ff9200;
+    color: white;
+    padding: 15px 20px;
+    margin: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    font-family: farsiFont;
+
+}
+
+.layer-in a:hover {
+    background-color: white;
+    color: #ff9200;
+}
+
+
+
+table {
+    width: 100%;
+}
+
+
+th , td {
+    height: 50px;
+    padding:10px  ;
+    text-align: center;
+}
+
+#customers {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+}
+
+#btn1, #btn2 {
+    background-color: #0b5620;
+    border: solid #0b5620;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-family: farsiFont;
+}
+.newId {
+    color: #b80000;
+    background-color: chartreuse;
+}
