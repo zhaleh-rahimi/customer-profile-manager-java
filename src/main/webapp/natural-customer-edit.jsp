@@ -51,7 +51,7 @@
                     </table>
 
                     <input type="submit"  class="button" value="به روز رسانی">
-                    <a href="../customer-type-selection.html" class="form">بازگشت به خانه</a>
+                    <a href="../natural-customer-management.html" class="form">بازگشت به خانه</a>
                 </form>
             </div>
         </div>

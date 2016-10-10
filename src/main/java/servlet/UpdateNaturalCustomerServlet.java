@@ -3,7 +3,7 @@ package servlet;
 import business_logic.NaturalCustomerLogic;
 import business_logic.exceptions.DuplicateInformationException;
 import data_access.entity.NaturalCustomer;
-import util.Message;
+import util.MessageUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -69,10 +69,10 @@ public class UpdateNaturalCustomerServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }catch (DuplicateInformationException e){
-            Message errorMessage=new Message();
-            errorMessage.info = "شماره ملی وارد شده تکراری می باشد.";
-            errorMessage.header = "عملیات ناموفق";
-            request.setAttribute("error", errorMessage);
+            MessageUtil errorMessageUtil =new MessageUtil();
+            errorMessageUtil.info = "شماره ملی وارد شده تکراری می باشد.";
+            errorMessageUtil.header = "عملیات ناموفق";
+            request.setAttribute("error", errorMessageUtil);
             getServletConfig().getServletContext().getRequestDispatcher("/natural-customer-edit-result.jsp").forward(request, response);
         }
 
@@ -81,10 +81,10 @@ public class UpdateNaturalCustomerServlet extends HttpServlet {
     private void deleteNaturalCustomer(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int customerId = Integer.parseInt(request.getParameter("id"));
         NaturalCustomerLogic.deleteNaturalCustomerByID(customerId);
-        Message message=new Message();
-        message.info = "حذف انجام شد ";
-        message.header = "عملیات موفق";
-        request.setAttribute("error", message);
+        MessageUtil messageUtil =new MessageUtil();
+        messageUtil.info = "حذف انجام شد ";
+        messageUtil.header = "عملیات موفق";
+        request.setAttribute("error", messageUtil);
         getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
     }
 

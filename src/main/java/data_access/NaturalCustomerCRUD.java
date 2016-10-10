@@ -53,7 +53,7 @@ public class NaturalCustomerCRUD {
     public static void insertIntoNaturalCustomerTable(NaturalCustomer naturalCustomer) throws SQLException {
         Session session=HibernateUtil.getSessionFactory().openSession();
         Transaction transaction=session.beginTransaction();
-        session.persist(naturalCustomer);
+        session.save(naturalCustomer);
         transaction.commit();
         session.close();
         System.out.println("successfully inserted into table");

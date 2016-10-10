@@ -4,7 +4,7 @@ import business_logic.NaturalCustomerLogic;
 import business_logic.exceptions.DuplicateInformationException;
 import business_logic.exceptions.FieldRequiredException;
 import data_access.entity.NaturalCustomer;
-import util.Message;
+import util.MessageUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,7 +27,7 @@ public class CreateNaturalCustomerServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         NaturalCustomer naturalCustomer = new NaturalCustomer();
-        Message errorMessage = new Message();
+        MessageUtil errorMessageUtil = new MessageUtil();
         try {
             naturalCustomer.setFirstName(request.getParameter("firstName"));
             naturalCustomer.setLastName(request.getParameter("lastName"));
@@ -43,14 +43,14 @@ public class CreateNaturalCustomerServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (DuplicateInformationException e) {
-            Message.info = "شماره ملی وارد شده تکراری می باشد.";
-            Message.header = "عملیات ناموفق";
-            request.setAttribute("error", errorMessage);
+            MessageUtil.info = "شماره ملی وارد شده تکراری می باشد.";
+            MessageUtil.header = "عملیات ناموفق";
+            request.setAttribute("error", errorMessageUtil);
             getServletConfig().getServletContext().getRequestDispatcher("/natural-customer-registration-result.jsp").forward(request, response);
         } catch (FieldRequiredException e) {
-            Message.info = "ورود همه فیلدها الزامی است.";
-            Message.header = "عملیات ناموفق";
-            request.setAttribute("error", errorMessage);
+            MessageUtil.info = "ورود همه فیلدها الزامی است.";
+            MessageUtil.header = "عملیات ناموفق";
+            request.setAttribute("error", errorMessageUtil);
             getServletConfig().getServletContext().getRequestDispatcher("/natural-customer-registration-result.jsp").forward(request, response);
         }
 

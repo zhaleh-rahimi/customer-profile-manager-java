@@ -1,5 +1,5 @@
 <%@ page import="data_access.entity.NaturalCustomer" %>
-<%@ page import="util.Message" %>
+<%@ page import="util.MessageUtil" %>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" language="java" %>
 <html lang="fa">
 <head>
@@ -57,11 +57,11 @@
                     </tr>
                     </tbody>
                 </table>
-                <%} else { Message errorMessage =(Message)request.getAttribute("error");%>
-                <h2 style="color: #b80000"><%=errorMessage.getHeader()%></h2>
-                <h3 style="color: #b80000"><%=errorMessage.getInfo()%></h3>
+                <%} else { MessageUtil errorMessageUtil =(MessageUtil)request.getAttribute("error");%>
+                <h2 style="color: #b80000"><%=errorMessageUtil.getHeader()%></h2>
+                <h3 style="color: #b80000"><%=errorMessageUtil.getInfo()%></h3>
                 <%}%>
-                <a href="../customer-type-selection.html" class=form>بازگشت به خانه</a>
+                <a href="../natural-customer-management.html" class=form>بازگشت به خانه</a>
             </div>
         </div>
     </div>

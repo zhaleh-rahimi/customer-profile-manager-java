@@ -3,7 +3,7 @@ package util;
 /**
  * Created by dotinschool3 on 10/9/2016.
  */
-public class Message {
+public class MessageUtil {
     public static String header , info ;
 
     public static String getHeader() {
