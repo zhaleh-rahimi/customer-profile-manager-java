@@ -58,4 +58,5 @@ public class FacilityType {
     public BigDecimal getMaxAmount() {
         return maxAmount;
     }
+
 }

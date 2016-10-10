@@ -12,14 +12,7 @@ public class AffairForm {
     private FacilityType facilityType;
     private NaturalCustomer naturalCustomer;
 
-
     public AffairForm() {
-    }
-
-    public AffairForm(int formId, int duration, BigDecimal amount) {
-        this.formId = formId;
-        this.duration = duration;
-        this.amount = amount;
     }
 
     public void setFormId(int formId) {
