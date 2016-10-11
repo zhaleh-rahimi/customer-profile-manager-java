@@ -16,3 +16,5 @@
 - log4j
 - mysql server
 - mysql workbench
+- servlet
+- tomcat
