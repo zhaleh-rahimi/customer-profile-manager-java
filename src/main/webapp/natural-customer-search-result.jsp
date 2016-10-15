@@ -77,7 +77,7 @@
                 <h3>مشتری با مشخصات وارد شده وجود ندارد</h3>
                 <%}%>
 
-                <a href="../natural-customer-search.html" class=form>بازگشت به صفحه قبل</a>
+                <a href="../natural-customer-search.jsp" class=form>بازگشت به صفحه قبل</a>
             </div>
         </div>
     </div>

@@ -66,7 +66,7 @@
                 <h3 style="color: #b80000"><%=errorMessageUtil.getInfo()%>
                 </h3>
                 <%}%>
-                <a href="../natural-customer-management.html" class=form>بازگشت به خانه</a>
+                <a href="../natural-customer-management.jsp" class=form>بازگشت به خانه</a>
             </div>
         </div>
     </div>

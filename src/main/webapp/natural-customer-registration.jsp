@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" language="java" %>
 <html lang="fa">
 <head>
     <meta charset="UTF-8">
@@ -39,7 +39,7 @@
                     </table>
 
                     <input type="submit" class="button" value="ثبت اطلاعات">
-                    <a href="../natural-customer-management.html" class="form">بازگشت به صفحه قبل</a>
+                    <a href="../natural-customer-management.jsp" class="form">بازگشت به صفحه قبل</a>
                 </form>
             </div>
         </div>

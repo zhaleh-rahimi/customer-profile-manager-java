@@ -6,9 +6,12 @@
 <hibernate-mapping>
     <class name="data_access.entity.NaturalCustomer" table="natural_customer">
         <id name="customerId" type="java.lang.Integer">
-            <column name="natural_customer_number" sql-type="int(11)" unique="true"/>
+            <column name="id" sql-type="int(11)" unique="true"/>
             <generator class="increment"/>
         </id>
+        <property name="naturalCustomerNumber" type="java.lang.Integer">
+            <column name=" natural_Customer_number" sql-type="int(11)" unique="true"/>
+        </property>
         <property name="firstName" type="java.lang.String">
             <column name="first_name" sql-type="VARCHAR(255)" not-null="true"/>
         </property>

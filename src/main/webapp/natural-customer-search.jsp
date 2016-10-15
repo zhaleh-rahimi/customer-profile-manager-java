@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" language="java" %>
 <html lang="fa">
 <head>
     <meta charset="UTF-8">
@@ -15,19 +15,19 @@
                 <p>جستجو بر اساس</p>
                 <div class="search-box">
                     <form action="SearchNaturalCustomer" method="post" onsubmit="">
-                    <select name="searchFilter">
-                        <option value="firstName">نام</option>
-                        <option value="lastName">نام خانوادگی</option>
-                        <option value="nationalCode">کد ملی</option>
-                        <option value="customerId">شماره مشتری</option>
-                    </select>
-                    <br>
-                    <br>
+                        <select name="searchFilter">
+                            <option value="firstName">نام</option>
+                            <option value="lastName">نام خانوادگی</option>
+                            <option value="nationalCode">کد ملی</option>
+                            <option value="customerId">شماره مشتری</option>
+                        </select>
+                        <br>
+                        <br>
 
                         <input type="text" name="searchValue">
                         <br>
                         <input type="submit" class="button" value="جستجو">
-                        <a href="../natural-customer-management.html" class="form">بازگشت به صفحه قبل</a>
+                        <a href="../natural-customer-management.jsp" class="form">بازگشت به صفحه قبل</a>
                     </form>
                 </div>
 
