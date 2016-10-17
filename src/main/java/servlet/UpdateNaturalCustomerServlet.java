@@ -16,7 +16,7 @@ import java.sql.SQLException;
 /**
  * Created by dotinschool3 on 10/4/2016.
  */
-@WebServlet(name = "UpdateNaturalCustomerServlet", urlPatterns = "/UpdateNaturalCustomer")
+@WebServlet(name = "UpdateNaturalCustomerServlet", urlPatterns = {"/UpdateNaturalCustomer"})
 public class UpdateNaturalCustomerServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

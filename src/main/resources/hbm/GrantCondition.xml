@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="data_access.entity.GrantCondition" table="grant_condition">
+        <id name="id" type="java.lang.Integer">
+            <column name="grant_id" sql-type="int(11)" unique="true"/>
+            <generator class="increment"/>
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="grant_name" sql-type="VARCHAR(45)" not-null="true"/>
+        </property>
+        <property name="minDuration" type="java.lang.Integer">
+            <column name="min_duration" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="maxDuration" type="java.lang.Integer">
+            <column name="max_duration" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="minAmount" type="java.math.BigDecimal">
+            <column name="min_amount" sql-type="DECIMAL" not-null="true"/>
+        </property>
+        <property name="maxAmount" type="java.math.BigDecimal">
+            <column name="max_amount" sql-type="DECIMAL" not-null="true"/>
+        </property>
+        <property name="loanTypeId" type="java.lang.Integer">
+            <column name="loan_type_id" sql-type="int(11)" />
+        </property>
+    </class>
+</hibernate-mapping>

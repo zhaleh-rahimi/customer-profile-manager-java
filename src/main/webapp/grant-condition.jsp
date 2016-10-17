@@ -12,22 +12,24 @@
     <div class="content">
         <div class="layer">
             <div class="layer-in">
+                <%
+                    LoanType loanType = (LoanType) request.getAttribute("loanType");
+                %>
                 <br>
-                <table>
-                    <%
-                        LoanType loanType = (LoanType) request.getAttribute("loanType");
-                    %>
+                <table class="header">
+
                     <tr>
-                        <td>نام تسهیلات</td>
+                        <th>نام تسهیلات</th>
+                        <th>نرخ سود تسهیلات</th>
+                    </tr>
+                    <tr>
                         <td><%=loanType.getLoanTypeName()%>
                         </td>
-                        <td>نرخ سود تسهیلات</td>
                         <td><%=loanType.getInterestRate()%>
                         </td>
                     </tr>
                 </table>
                 <br>
-                <hr>
                 <br>
                 <h3>لطفا شروط اعطا را وارد نمایید:</h3>
                 <br>
@@ -55,15 +57,14 @@
                 </table>
                 <input class="button" type="submit" value="اضافه کردن" onclick="addToTable()">
                 <br>
-                <hr>
                 <br>
-                <form action="/GrantConditionServlet" method="get">
-                    <input type="hidden" name="loanTypeName" value="<%=request.getParameter("loanTypeName")%>">
-                    <input type="hidden" name="interestRate" value="<%=request.getParameter("interestRate")%>">
-                    <table class="grant-table" id="grantConditionsTable"></table>
+                <form action="GrantConditionServlet" method="get">
+                    <input type="hidden" name="loanTypeName" value="<%=loanType.getLoanTypeName()%>">
+                    <input type="hidden" name="interestRate" value="<%=loanType.getInterestRate()%>">
+                    <table class="grant-table" id="grantConditionsTable">
+                    </table>
                     <br>
-                </form>
-
+                <input type="submit" class="button" value="ثبت اطلاعات">
                 <a href="../loan-type.jsp" class="form">بازگشت به صفحه قبل</a>
                 </form>
             </div>

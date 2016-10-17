@@ -1,6 +1,8 @@
 package data_access.entity;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by dotinschool3 on 10/15/2016.
@@ -9,13 +11,21 @@ public class LoanType {
     private String loanTypeName;
     private int loanTypeId;
     private Float interestRate;
-    private ArrayList<GrantCondition> grantConditions;
+    private List<GrantCondition> grantConditions;
 
-    public ArrayList<GrantCondition> getGrantConditions() {
+    public LoanType() {
+    }
+
+    public LoanType(String loanTypeName, Float interestRate) {
+        this.loanTypeName = loanTypeName;
+        this.interestRate = interestRate;
+    }
+
+    public List<GrantCondition> getGrantConditions() {
         return grantConditions;
     }
 
-    public void setGrantConditions(ArrayList<GrantCondition> grantConditions) {
+    public void setGrantConditions(List<GrantCondition> grantConditions) {
         this.grantConditions = grantConditions;
     }
 

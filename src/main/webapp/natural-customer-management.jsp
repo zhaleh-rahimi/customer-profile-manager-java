@@ -13,10 +13,11 @@
                 <div class="layer-in">
                     <br>
 
-                    <p>لطفا عملیات مورد نظر را انتخاب نمایید</p>
+
 
                     <a href="../natural-customer-registration.jsp" class="form">ایجاد مشتری حقیقی جدید</a>
                     <a href="../natural-customer-search.jsp" class="form">جستجو</a>
+                    <p>لطفا عملیات مورد نظر را انتخاب نمایید</p>
                     <a href="../loan-type.jsp" class="form">نوع تسهیلات</a>
                     <a href="../loan-file.jsp" class="form">تشکیل پرونده تسهیلاتی</a>
 

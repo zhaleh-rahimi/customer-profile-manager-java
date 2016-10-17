@@ -13,20 +13,21 @@
                 <br>
                 <p>لطفا نوع تسهیلات را وارد کنید:</p>
                 <br>
-                <form action="LoanType" method="post" onsubmit="">
+                <form action="LoanType" method="post" >
                     <table>
                         <tr>
                             <td> نام نوع تسهیلات</td>
-                            <td><input type="text" name="loanType"></td>
+                            <td><input type="text" name="loanTypeName" required="required"
+                                       oninvalid="this.setCustomValidity('وارد کردن نوع تسهیلات الزامی است')"></td>
                         </tr>
                         <tr>
                             <td> نرخ سود</td>
-                            <td><input type="text" name="interestRate"></td>
+                            <td><input type="text" name="interestRate" required="required"
+                                       oninvalid="this.setCustomValidity('وارد کردن نرخ سود الزامی است')"></td>
                         </tr>
 
                     </table>
-
-                    <input type="submit" class="button" value="ثبت اطلاعات">
+                    <input type="submit" class="button" value="افزودن شروط اعطا">
                     <a href="../natural-customer-management.jsp" class="form">بازگشت به صفحه قبل</a>
                 </form>
             </div>

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="data_access.entity.LoanType" table="loan_type">
+        <id name="loanTypeId" type="java.lang.Integer">
+            <column name="loan_type_id" sql-type="INT(11)" unique="true"/>
+            <generator class="increment"/>
+        </id>
+        <property name="loanTypeName" type="java.lang.String">
+            <column name="loan_type_name" sql-type="VARCHAR(45)" not-null="true"/>
+        </property>
+        <property name="interestRate" type="java.lang.Float">
+            <column name="interest_rate" sql-type="FLOAT" not-null="true"/>
+        </property>
+        <set name="grantConditions" cascade="all">
+            <key column="loan_type_id"></key>
+            <one-to-many class="data_access.entity.GrantCondition"/>
+        </set>
+
+    </class>
+</hibernate-mapping>

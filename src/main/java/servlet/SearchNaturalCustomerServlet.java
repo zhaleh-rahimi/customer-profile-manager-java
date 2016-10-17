@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 /**
  * Created by dotinschool3 on 10/3/2016.
  */
-@WebServlet(name = "SearchNaturalCustomerServlet" , urlPatterns = "/SearchNaturalCustomer")
+@WebServlet(name = "SearchNaturalCustomerServlet" , urlPatterns = {"/SearchNaturalCustomer"})
 public class SearchNaturalCustomerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");

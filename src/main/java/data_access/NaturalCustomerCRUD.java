@@ -18,7 +18,7 @@ public class NaturalCustomerCRUD {
     private static ArrayList<NaturalCustomer> naturalCustomers = null;
 
 
- /*   public static void main(String[] args) {
+    /*public static void main(String[] args) {
 
         //creating configuration object
         Configuration cfg = new Configuration();
@@ -38,11 +38,10 @@ public class NaturalCustomerCRUD {
         naturalCustomer.setLastName("محمدی");
         naturalCustomer.setFatherName("حمید");
         naturalCustomer.setDateOfBirth("2010-2-2");
-        naturalCustomer.setNationalCode("557");
-        //naturalCustomer.setCustomerId(179);
+        naturalCustomer.setNationalCode("525271");
+        //naturalCustomer.setNaturalCustomerNumber(naturalCustomer.getCustomerId());
 
         session.persist(naturalCustomer);//persisting the object
-
         transaction.commit();//transaction is committed
         session.close();
 
@@ -50,16 +49,14 @@ public class NaturalCustomerCRUD {
 
     }*/
 
-    public static void insertIntoNaturalCustomerTable(NaturalCustomer naturalCustomer) throws SQLException {
+    public static void insertIntoNaturalCustomerTable(NaturalCustomer naturalCustomer)  {
         Session session=HibernateUtil.getSessionFactory().openSession();
         Transaction transaction=session.beginTransaction();
         session.save(naturalCustomer);
         transaction.commit();
         session.close();
         System.out.println("successfully inserted into table");
-
     }
-
     private static ArrayList<NaturalCustomer> setSearchResult(ResultSet resultSet) throws SQLException {
         return null;
     }
@@ -95,24 +92,4 @@ public class NaturalCustomerCRUD {
     public static Boolean noDuplicateNumberInTable(String nationalCode, int idOfNew) throws SQLException {
         return true;
     }
-
-
-    //Main Test
-    /*public static void main(String[] argv) throws SQLException {
-        NaturalCustomer naturalCustomer = new NaturalCustomer();
-        *//*naturalCustomer.setFirstName("مهلا");
-        naturalCustomer.setLastName("محمدی");
-        naturalCustomer.setFatherName("حمید");
-        naturalCustomer.setDateOfBirth("2010-2-2");
-        naturalCustomer.setNationalCode("557");*//*
-        //naturalCustomer.setCustomerId(179);
-        *//*try {
-            insertIntoNaturalCustomerTable(naturalCustomer);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }*//*
-
-       deleteFromNaturalCustomerTable(179);
-    }*/
-
 }

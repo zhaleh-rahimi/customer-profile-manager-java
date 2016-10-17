@@ -7,10 +7,13 @@
         <property name="hbm2ddl.auto">update</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost/natural_customer_management?useUnicode=true&amp;characterEncoding=UTF-8&amp;</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost/natural_customer_management?useUnicode=true&amp;characterEncoding=UTF-8</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password"></property>
         <property name="hibernate.show_sql">true</property>
         <mapping resource="hbm/NaturalCustomer.hbm.xml"/>
+        <mapping resource="hbm/LoanType.xml"/>
+        <mapping resource="hbm/GrantCondition.xml"/>
+        <mapping resource="hbm/LoanFile.xml"/>
     </session-factory>
 </hibernate-configuration>

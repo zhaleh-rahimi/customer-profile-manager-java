@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="2269709169">
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="f96d6884-0ed0-464b-a58b-66aebdb60ce6">
+      <driver-ref>com.mysql.cj.jdbc.Driver</driver-ref>
+      <imported>true</imported>
+      <configured-by-url>true</configured-by-url>
+      <remarks>$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml</remarks>
+      <jdbc-driver>null</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost/natural_customer_management?useUnicode=true&amp;characterEncoding=UTF-8</jdbc-url>
+      <explain-plan-config>
+        <provider>com.intellij.database.plan.ExplainPlanProvider.NullExplainPlanProvider</provider>
+      </explain-plan-config>
+    </data-source>
+  </component>
+</project>

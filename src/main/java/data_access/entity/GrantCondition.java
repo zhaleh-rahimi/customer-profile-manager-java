@@ -8,9 +8,9 @@ import java.math.BigDecimal;
 public class GrantCondition {
     private int id;
     private String name;
-    private int minDuration, maxDuration;
+    private Integer minDuration, maxDuration;
     private BigDecimal minAmount, maxAmount;
-    private int loanTypeId;
+    private Integer loanTypeId;
 
     public int getId() {
         return id;
@@ -66,5 +66,10 @@ public class GrantCondition {
 
     public void setMaxAmount(BigDecimal maxAmount) {
         this.maxAmount = maxAmount;
+    }
+
+    @Override
+    public String toString() {
+        return getName()+" ,"+getMinDuration()+" ,"+getMaxDuration()+" ,"+getMinAmount()+" ,"+getMaxAmount();
     }
 }

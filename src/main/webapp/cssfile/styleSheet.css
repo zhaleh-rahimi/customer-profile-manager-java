@@ -159,7 +159,19 @@ body {
     border: 1px solid #ddd;
 }
 .grant-table input{
-    width: 70%;
+    width: 90%;
+    text-align: center;
+}
+.header th {
+    text-align: center;
+    border: 1px solid #ddd;
+    width: 30%;
+}
+.header td{
+    text-align: center;
+    color: #4CAF50;
+    border: 1px solid #ddd;
+    width: 30%;
 }
 
 table {
