@@ -12,8 +12,8 @@
         <property name="hibernate.connection.password"></property>
         <property name="hibernate.show_sql">true</property>
         <mapping resource="hbm/NaturalCustomer.hbm.xml"/>
-        <mapping resource="hbm/LoanType.xml"/>
-        <mapping resource="hbm/GrantCondition.xml"/>
-        <mapping resource="hbm/LoanFile.xml"/>
+        <mapping resource="hbm/LoanType.hbm.xml"/>
+        <mapping resource="hbm/GrantCondition.hbm.xml"/>
+        <mapping resource="hbm/LoanFile.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

@@ -6,14 +6,14 @@ import java.math.BigDecimal;
  * Created by dotinschool3 on 10/15/2016.
  */
 public class LoanFile {
-    private int loadFileId;
+    private int loanFileId;
     private NaturalCustomer naturalCustomer;
     private LoanType loanType;
     private BigDecimal amount;
     private int duration;
 
-    public int getLoadFileId() {
-        return loadFileId;
+    public int getLoanFileId() {
+        return loanFileId;
     }
 
     public NaturalCustomer getNaturalCustomer() {
@@ -32,8 +32,8 @@ public class LoanFile {
         return duration;
     }
 
-    public void setLoadFileId(int loadFileId) {
-        this.loadFileId = loadFileId;
+    public void setLoanFileId(int loadFileId) {
+        this.loanFileId = loadFileId;
     }
 
     public void setNaturalCustomer(NaturalCustomer naturalCustomer) {

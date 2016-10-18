@@ -5,11 +5,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 import util.HibernateUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by DOTIN SCHOOL 4 on 9/28/2016.
@@ -18,7 +20,7 @@ public class NaturalCustomerCRUD {
     private static ArrayList<NaturalCustomer> naturalCustomers = null;
 
 
-    /*public static void main(String[] args) {
+   /* public static void main(String[] args) {
 
         //creating configuration object
         Configuration cfg = new Configuration();
@@ -38,25 +40,26 @@ public class NaturalCustomerCRUD {
         naturalCustomer.setLastName("محمدی");
         naturalCustomer.setFatherName("حمید");
         naturalCustomer.setDateOfBirth("2010-2-2");
-        naturalCustomer.setNationalCode("525271");
+        naturalCustomer.setNationalCode("5225271");
         //naturalCustomer.setNaturalCustomerNumber(naturalCustomer.getCustomerId());
 
-        session.persist(naturalCustomer);//persisting the object
+        session.save(naturalCustomer);//persisting the object
         transaction.commit();//transaction is committed
         session.close();
 
         System.out.println("successfully saved");
 
-    }*/
-
-    public static void insertIntoNaturalCustomerTable(NaturalCustomer naturalCustomer)  {
-        Session session=HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction=session.beginTransaction();
+    }
+*/
+    public static void insertIntoNaturalCustomerTable(NaturalCustomer naturalCustomer) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
         session.save(naturalCustomer);
         transaction.commit();
         session.close();
         System.out.println("successfully inserted into table");
     }
+
     private static ArrayList<NaturalCustomer> setSearchResult(ResultSet resultSet) throws SQLException {
         return null;
     }
@@ -69,7 +72,7 @@ public class NaturalCustomerCRUD {
         return null;
     }
 
-    public static ArrayList<NaturalCustomer> findCustomerById(String id) throws SQLException {
+    public static ArrayList<NaturalCustomer> findCustomerById(String id) {
         return null;
     }
 
@@ -91,5 +94,16 @@ public class NaturalCustomerCRUD {
 
     public static Boolean noDuplicateNumberInTable(String nationalCode, int idOfNew) throws SQLException {
         return true;
+    }
+
+    public static NaturalCustomer retrieveCustomerById(String customerId) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createQuery("From NaturalCustomer naturalCustomer WHERE naturalCustomer.customerId=" + customerId);
+        List naturalCustomer = query.list();
+        transaction.commit();
+        session.close();
+        System.out.println("successfully Read from table" + naturalCustomer);
+        return (NaturalCustomer) naturalCustomer.get(0);
     }
 }

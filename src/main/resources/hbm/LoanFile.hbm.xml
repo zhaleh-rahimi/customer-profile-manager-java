@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="data_access.entity.LoanFile" table="loan_file">
+        <id name="loanFileId" type="java.lang.Integer">
+            <column name="loan_file_id" sql-type="INT(11)" unique="true"/>
+            <generator class="increment"/>
+        </id>
+        <property name="amount" type="java.math.BigDecimal">
+            <column name="amount" sql-type="DECIMAL" not-null="true"/>
+        </property>
+        <property name="duration" type="java.lang.Integer">
+            <column name="duration" sql-type="INT(11)" not-null="true"/>
+        </property>
+        <many-to-one name="loanType" class="data_access.entity.LoanType" cascade="all">
+            <column name="loan_type_id" />
+        </many-to-one>
+
+        <many-to-one name="naturalCustomer" class="data_access.entity.NaturalCustomer" cascade="all">
+            <column name="customer_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

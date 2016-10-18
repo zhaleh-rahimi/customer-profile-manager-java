@@ -15,11 +15,11 @@
 
 
 
-                    <a href="../natural-customer-registration.jsp" class="form">ایجاد مشتری حقیقی جدید</a>
-                    <a href="../natural-customer-search.jsp" class="form">جستجو</a>
+                    <a href="../natural-customer-registration.jsp" class="form1">ایجاد مشتری حقیقی جدید</a>
+                    <a href="../natural-customer-search.jsp" class="form1">جستجو</a>
                     <p>لطفا عملیات مورد نظر را انتخاب نمایید</p>
-                    <a href="../loan-type.jsp" class="form">نوع تسهیلات</a>
-                    <a href="../loan-file.jsp" class="form">تشکیل پرونده تسهیلاتی</a>
+                    <a href="../loan-type.jsp" class="form1">نوع تسهیلات</a>
+                    <a href="LoanFileServlet?action=create-loan-file" class="form1">تشکیل پرونده تسهیلاتی</a>
 
                 </div>
             </div>

@@ -58,13 +58,15 @@
                 <input class="button" type="submit" value="اضافه کردن" onclick="addToTable()">
                 <br>
                 <br>
-                <form action="GrantConditionServlet" method="get">
+                <form action="GrantConditionServlet" method="get" onsubmit="rowCounter()">
                     <input type="hidden" name="loanTypeName" value="<%=loanType.getLoanTypeName()%>">
                     <input type="hidden" name="interestRate" value="<%=loanType.getInterestRate()%>">
+                    <input type="hidden" name="rowCount" id="rowCount" >
                     <table class="grant-table" id="grantConditionsTable">
                     </table>
                     <br>
-                <input type="submit" class="button" value="ثبت اطلاعات">
+
+                <input type="submit" class="button" value="ثبت اطلاعات" >
                 <a href="../loan-type.jsp" class="form">بازگشت به صفحه قبل</a>
                 </form>
             </div>

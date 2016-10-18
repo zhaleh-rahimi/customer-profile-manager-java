@@ -1,3 +1,4 @@
+
 function addToTable() {
 
 
@@ -24,6 +25,12 @@ function addToTable() {
 
     }
     
+    
+    }
+function rowCounter() {
+    var table = document.getElementById("grantConditionsTable");
+    var rowCount = table.rows.length-1;
+    document.getElementById("rowCount").value=rowCount;
     }
 
 

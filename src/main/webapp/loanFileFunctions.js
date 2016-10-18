@@ -1,29 +1,19 @@
-function fetchLoanTypes() {
-
-}
 function fetchCustomerInfo() {
-    var firstName = document.getElementsByName("firstName");
-    var lastName = document.getElementsByName("lastName");
-    var table = document.getElementById("customerInfo");
-    var rowCount = table.rows.length;
-    if (rowCount == 0) {
-        addHeader();
-    }
-    rowCount = table.rows.length;
-    var row = table.insertRow(rowCount);
-    row.insertCell(1).innerHTML = '<input type="text" name="firstName" value="' + firstName.value + '" readonly>';
-    row.insertCell(2).innerHTML = '<input type="text" name="lastName" value="' + lastName.value + '" readonly>';
+    var customerId = document.getElementById("customerId").value;
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var customer = JSON.parse(request.response);
+            var firstName = customer.firstName;
+            var lastName = customer.lastName;
+            showCustomerInfo(firstName, lastName);
+        }
+    };
+    request.open("GET", "/LoanFileServlet?action=retrieve-customer&customerId=" + customerId, true);
+    request.send();
 }
 
-function addHeader() {
-    var table = document.getElementById("customerInfo");
-    var rowCount = table.rows.length;
-    var headerRow = table.insertRow(rowCount);
-    var headerCell = document.createElement("TH");
-    headerCell.innerHTML = "نام";
-    headerRow.appendChild(headerCell);
-    headerCell = document.createElement("TH");
-    headerCell.innerHTML = "نام خانوادگی";
-    headerRow.appendChild(headerCell);
-
+function showCustomerInfo(firstName, lastName) {
+    document.getElementById("firstName").innerHTML=firstName.toString();
+    document.getElementById("lastName").innerHTML=lastName;
 }
