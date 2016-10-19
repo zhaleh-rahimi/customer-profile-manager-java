@@ -16,21 +16,16 @@ import java.util.List;
  */
 public class LoanFileCRUD {
 
-    public static ArrayList<LoanType> findLoanTypes() {
+
+
+    public static void create(LoanFile loanFile) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("From LoanType");
-        ArrayList<LoanType> loanTypes = (ArrayList<LoanType>) query.list();
+        session.save(loanFile);
         transaction.commit();
         session.close();
-        System.out.println("successfully Read from table" + loanTypes);
-        return loanTypes;
+        System.out.println("successfully inserted into table loan_file");
     }
-
     public static void main(String[] s) {
-    }
-
-    public static void create(Integer customerId, Integer loanTypeId, LoanFile loanFile) {
-
     }
 }

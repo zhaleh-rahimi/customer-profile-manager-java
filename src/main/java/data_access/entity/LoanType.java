@@ -55,5 +55,10 @@ public class LoanType {
     public void setInterestRate(Float interestRate) {
         this.interestRate = interestRate;
     }
+
+    @Override
+    public String toString() {
+        return getLoanTypeId()+" ,"+getLoanTypeName()+" ,"+getInterestRate();
+    }
 }
 

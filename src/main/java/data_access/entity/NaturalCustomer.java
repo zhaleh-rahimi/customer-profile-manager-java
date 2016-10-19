@@ -73,7 +73,8 @@ public class NaturalCustomer {
 
     @Override
     public String toString() {
-        return getFirstName() + ", " + getLastName() + ", " + getFatherName() + ", " + getDateOfBirth() + ", " + getNationalCode() ;
+        return "first name:"+getFirstName() + " ,last name: " + getLastName() + ", father name: " + getFatherName() +
+                ", date of birth: " + getDateOfBirth() + ", national code: " + getNationalCode()+" , customer id:" +getCustomerId() ;
     }
 
 }

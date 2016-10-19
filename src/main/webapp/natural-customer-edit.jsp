@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link href=cssfile/styleSheet.css rel=stylesheet>
+    <script type="text/javascript" src="/check-nationalcode.js"></script>
     <title>ویرایش مشتری حقیقی </title>
 </head>
 <body>
@@ -15,7 +16,7 @@
                 <p>لطفا اطلاعات مشتری را وارد نمایید.</p>
                 <br>
 
-                <form action="UpdateNaturalCustomer" name="edit" method="get" >
+                <form action="UpdateNaturalCustomer" name="edit" method="get" onsubmit="checkNationalCode()">
                     <input type="hidden" name="action" value="edit-natural-customer">
                     <%
                         NaturalCustomer naturalCustomer = (NaturalCustomer) request.getAttribute("naturalCustomer");

@@ -14,17 +14,29 @@
                 <br>
                 <p>جستجو بر اساس</p>
                 <div class="search-box">
-                    <form action="SearchNaturalCustomer" method="post" onsubmit="">
-                        <select name="searchFilter">
-                            <option value="firstName">نام</option>
-                            <option value="lastName">نام خانوادگی</option>
-                            <option value="nationalCode">کد ملی</option>
-                            <option value="customerId">شماره مشتری</option>
-                        </select>
+                    <form action="SearchNaturalCustomer" method="post" >
+                        <table>
+                            <tr>
+                                <td> نام</td>
+                                <td><input type="text" name="firstName"></td>
+                            </tr>
+                            <tr>
+                                <td> نام خانوادگی</td>
+                                <td><input type="text" name="lastName"></td>
+                            </tr>
+                            <tr>
+                                <td>شماره مشتری</td>
+                                <td><input type="text" name="customerId"></td>
+                            </tr>
+                            <tr>
+                                <td>کد ملی</td>
+                                <td><input type="text" name="nationalCode" id="nationalCode">
+                                </td>
+                            </tr>
+                        </table>
                         <br>
                         <br>
 
-                        <input type="text" name="searchValue">
                         <br>
                         <input type="submit" class="button" value="جستجو">
                         <a href="../natural-customer-management.jsp" class="form">بازگشت به صفحه قبل</a>

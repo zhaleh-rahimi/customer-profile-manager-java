@@ -26,5 +26,7 @@ public class LoanTypeLogic {
     }
 
 
-
+    public static LoanType retrieveLoanType(Integer loanTypeId) {
+        return LoanTypeCRUD.retrieveLoanTypeById(loanTypeId);
+    }
 }

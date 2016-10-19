@@ -3,6 +3,7 @@ package servlet;
 import business_logic.NaturalCustomerLogic;
 import business_logic.exceptions.DuplicateInformationException;
 import business_logic.exceptions.FieldRequiredException;
+import business_logic.exceptions.NationalCodeFormatException;
 import data_access.entity.NaturalCustomer;
 import util.MessageUtil;
 
@@ -34,6 +35,7 @@ public class CreateNaturalCustomerServlet extends HttpServlet {
             naturalCustomer.setFatherName(request.getParameter("fatherName"));
             naturalCustomer.setDateOfBirth(request.getParameter("dateOfBirth"));
             naturalCustomer.setNationalCode(request.getParameter("nationalCode"));
+
             System.out.println(naturalCustomer.toString());
 
             NaturalCustomerLogic.insertNaturalCustomer(naturalCustomer);
@@ -49,6 +51,11 @@ public class CreateNaturalCustomerServlet extends HttpServlet {
             getServletConfig().getServletContext().getRequestDispatcher("/natural-customer-registration-result.jsp").forward(request, response);
         } catch (FieldRequiredException e) {
             MessageUtil.info = "ورود همه فیلدها الزامی است.";
+            MessageUtil.header = "عملیات ناموفق";
+            request.setAttribute("error", errorMessageUtil);
+            getServletConfig().getServletContext().getRequestDispatcher("/natural-customer-registration-result.jsp").forward(request, response);
+        }catch (NationalCodeFormatException e){
+            MessageUtil.info = "کد ملی معتبر نمی باشد";
             MessageUtil.header = "عملیات ناموفق";
             request.setAttribute("error", errorMessageUtil);
             getServletConfig().getServletContext().getRequestDispatcher("/natural-customer-registration-result.jsp").forward(request, response);

@@ -14,7 +14,7 @@
         <div class="layer">
             <div class="layer-in">
                 <br>
-                <form action="LoanFileServlet" method="get">
+                <form action="LoanFileServlet" method="get" onsubmit="checkCustomerAvailability()">
                     <input type="text" name="action" value="create-loan-file" hidden>
                     <table class="grant-table">
                         <tr>
@@ -28,10 +28,11 @@
                     </table>
                     <br>
                     <table id="customerInfo">
-                        <tr><th>نام</th><th>نام خانوادگی</th></tr>
+                        <tr><th id="nameHeader"></th><th id="lastNameHeader"></th></tr>
                         <tr><td id="firstName"></td><td id="lastName"></td></tr>
                     </table>
                     <br>
+                    <p id="message" style="color: #b80000"></p>
                     <hr>
                     <br>
                     <%
@@ -41,11 +42,9 @@
                     <select name="loanTypesList" class="dropdown">
                         <div class="dropdown-content">
                             <% for (LoanType loanType : loanTypes) { %>
-
                             <option
                                     value="<%= loanType.getLoanTypeId()%>"><%= loanType.getLoanTypeName()%>
                             </option>
-
                             <%}%>
                         </div>
                     </select>
@@ -61,7 +60,7 @@
                             <td><input type="text" name="amount"></td>
                         </tr>
                     </table>
-                    <input type="submit" class="button" value="ثبت پرونده">
+                    <input type="submit" class="button" value="ثبت پرونده" >
                     <a href="../natural-customer-management.jsp" class="form">بازگشت به صفحه قبل</a>
                 </form>
             </div>

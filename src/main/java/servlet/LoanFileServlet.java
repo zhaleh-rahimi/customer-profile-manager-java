@@ -9,6 +9,7 @@ import data_access.LoanFileCRUD;
 import data_access.entity.LoanFile;
 import data_access.entity.LoanType;
 import data_access.entity.NaturalCustomer;
+import util.MessageUtil;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,38 +40,31 @@ public class LoanFileServlet extends HttpServlet {
         if ("retrieve-customer".equalsIgnoreCase(action)) {
             retrieveCustomer(request, response);
         }
+        if ("create-loan-file".equalsIgnoreCase(action)) {
+            createLoanFile(request, response);
+        }
     }
 
-    private void createLoanFile(HttpServletRequest request, HttpServletResponse response) {
+    private void createLoanFile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        MessageUtil message = new MessageUtil();
         try {
-            Integer customerId = Integer.parseInt(request.getParameter("CustomerId"));
-            Integer loanTypeId = Integer.parseInt(request.getParameter("loanType"));
-
             LoanFile loanFile = new LoanFile();
-
+            Integer customerId = Integer.parseInt(request.getParameter("customerId"));
+            Integer loanTypeId = Integer.parseInt(request.getParameter("loanTypesList"));
             loanFile.setAmount(new BigDecimal(request.getParameter("amount")));
             loanFile.setDuration(Integer.parseInt(request.getParameter("duration")));
-
             LoanFileLogic.create(customerId, loanTypeId, loanFile);
-
-
+            MessageUtil.info = "پرونده تسهیلاتی با موفقیت ثبت شد";
+            MessageUtil.header = "عملیات موفق";
+            request.setAttribute("message", message);
+            getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (InputNotInRangeException e) {
-
-            e.printStackTrace();
+            MessageUtil.info = "مقادیر وارد شده در بازه تعریف شده نیست.";
+            MessageUtil.header = "عملیات ناموفق";
+            request.setAttribute("error", message);
+            getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (DataNotFoundException e) {
-
             e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                getServletConfig().getServletContext().getRequestDispatcher("/info.jsp").forward(request, response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
         }
     }
 
@@ -87,20 +81,23 @@ public class LoanFileServlet extends HttpServlet {
 
     private void retrieveCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String customerId = request.getParameter("customerId");
+        NaturalCustomer naturalCustomer=new NaturalCustomer();
+        JsonObject jsonObject = new JsonObject();
         try {
-            NaturalCustomer naturalCustomer = NaturalCustomerLogic.retrieveCustomer(customerId);
-            // request.setAttribute("naturalCustomer", naturalCustomer);
+            naturalCustomer = NaturalCustomerLogic.retrieveCustomer(customerId);
             System.out.println("I have sent the natural customer" + customerId);
-            JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("firstName", naturalCustomer.getFirstName());
             jsonObject.addProperty("lastName", naturalCustomer.getLastName());
             response.setContentType("application/json");
             response.getWriter().print(jsonObject);
         } catch (DataNotFoundException e) {
-            e.printStackTrace();
+            naturalCustomer.setFirstName("مشتری با این شماره وجود ندارد.");
+            naturalCustomer.setLastName("خطا");
+            jsonObject.addProperty("firstName", naturalCustomer.getFirstName());
+            jsonObject.addProperty("lastName", naturalCustomer.getLastName());
+            response.setContentType("application/json");
+            response.getWriter().print(jsonObject);
         }
-
     }
-
 
 }

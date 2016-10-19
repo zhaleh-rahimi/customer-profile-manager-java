@@ -3,6 +3,7 @@ package servlet;
 import business_logic.NaturalCustomerLogic;
 import business_logic.exceptions.DataNotFoundException;
 import data_access.entity.NaturalCustomer;
+import util.LoggerUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,41 +18,46 @@ import java.util.logging.Logger;
 /**
  * Created by dotinschool3 on 10/3/2016.
  */
-@WebServlet(name = "SearchNaturalCustomerServlet" , urlPatterns = {"/SearchNaturalCustomer"})
+@WebServlet(name = "SearchNaturalCustomerServlet", urlPatterns = {"/SearchNaturalCustomer"})
 public class SearchNaturalCustomerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
 
-        String searchFilter = request.getParameter("searchFilter");
-        String searchValueStr = request.getParameter("searchValue");
 
-        System.out.println(searchFilter);
-        System.out.println(searchValueStr);
-
+        NaturalCustomer naturalCustomer = new NaturalCustomer();
         ArrayList<NaturalCustomer> naturalCustomers = null;
-
         try {
-            if(searchFilter.equals("firstName")){
-            naturalCustomers = NaturalCustomerLogic.searchByFirstName(searchValueStr);}
-            else if(searchFilter.equals("lastName")){
-                naturalCustomers = NaturalCustomerLogic.searchByLastName(searchValueStr);
+            if (request.getParameter("customerId").equals("")) {
+                naturalCustomer.setCustomerId(null);
+            } else {
+                naturalCustomer.setCustomerId(Integer.valueOf(request.getParameter("customerId")));
+            }if (request.getParameter("firstName").equals("")) {
+                naturalCustomer.setFirstName(null);
+            } else {
+                naturalCustomer.setFirstName(request.getParameter("firstName"));
             }
-            else if(searchFilter.equals("nationalCode")){
-                naturalCustomers = NaturalCustomerLogic.searchByNationalCode(searchValueStr);
+            if (request.getParameter("lastName").equals("")) {
+                naturalCustomer.setLastName(null);
+            } else {
+                naturalCustomer.setLastName(request.getParameter("lastName"));
+            }if (request.getParameter("nationalCode").equals("")) {
+                naturalCustomer.setNationalCode(null);
+            } else {
+                naturalCustomer.setNationalCode(request.getParameter("nationalCode"));
             }
-            else if(searchFilter.equals("customerId")){
-                naturalCustomers = NaturalCustomerLogic.searchById(searchValueStr);
-            }
-            System.out.println(naturalCustomers);
+
+            System.out.println("search filters are: " + naturalCustomer);
+
+            naturalCustomers = NaturalCustomerLogic.search(naturalCustomer);
+
             request.setAttribute("naturalCustomers", naturalCustomers);
             getServletConfig().getServletContext().getRequestDispatcher("/natural-customer-search-result.jsp").forward(request, response);
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }catch (DataNotFoundException e){
-            e.getMessage();
+        } catch (DataNotFoundException e) {
+            LoggerUtil.getLogger().info(e.getMessage());
+
         }
 
 

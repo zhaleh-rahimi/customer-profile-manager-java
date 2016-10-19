@@ -24,5 +24,9 @@ public class GrantConditionLogic {
             GrantConditionCRUD.insertIntoTable(loanType, grantConditions);
         }
     }
+
+    public static List<GrantCondition> retrieveConditionsByLoanTypeId(Integer loanTypeId) {
+        return GrantConditionCRUD.retrieveConditionsByLoanTypeId(loanTypeId);
+    }
 }
 

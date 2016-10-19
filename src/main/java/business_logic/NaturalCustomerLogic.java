@@ -60,44 +60,7 @@ public class NaturalCustomerLogic {
 
     public static void insertNaturalCustomer(NaturalCustomer naturalCustomer) throws SQLException {
         if (validate(naturalCustomer)) {
-            if (true) {
-                NaturalCustomerCRUD.insertIntoNaturalCustomerTable(naturalCustomer);
-            } else {
-                throw new DuplicateInformationException("duplicate number");
-            }
-        }
-    }
-
-    public static ArrayList<NaturalCustomer> searchByFirstName(String searchValueStr) throws SQLException {
-
-        try {
-            return NaturalCustomerCRUD.findCustomerByFirstName(searchValueStr);
-        } catch (RuntimeException e) {
-            throw new DataNotFoundException("no data");
-        }
-    }
-
-    public static ArrayList<NaturalCustomer> searchByLastName(String searchValueStr) throws SQLException {
-        try {
-            return NaturalCustomerCRUD.findCustomerByLastName(searchValueStr);
-        } catch (RuntimeException e) {
-            throw new DataNotFoundException("no data");
-        }
-    }
-
-    public static ArrayList<NaturalCustomer> searchByNationalCode(String searchValueStr) throws SQLException {
-        try {
-            return NaturalCustomerCRUD.findCustomerByNationalCode(searchValueStr);
-        } catch (DataNotFoundException e) {
-            throw new DataNotFoundException("no data");
-        }
-    }
-
-    public static ArrayList<NaturalCustomer> searchById(String searchValueStr) {
-        try {
-            return NaturalCustomerCRUD.findCustomerById(searchValueStr);
-        } catch (RuntimeException e) {
-            throw new DataNotFoundException("no data");
+            NaturalCustomerCRUD.insertIntoNaturalCustomerTable(naturalCustomer);
         }
     }
 
@@ -106,15 +69,28 @@ public class NaturalCustomerLogic {
     }
 
     public static NaturalCustomer updateNaturalCustomer(NaturalCustomer naturalCustomer) throws SQLException {
-        Integer idOfNew = naturalCustomer.getCustomerId();
-        if (NaturalCustomerCRUD.noDuplicateNumberInTable(naturalCustomer.getNationalCode(), idOfNew)) {
+        if (validate(naturalCustomer)) {
             return NaturalCustomerCRUD.updateNaturalCustomerInTable(naturalCustomer);
-        } else {
-            throw new DuplicateInformationException("duplicate");
-        }
+        } else
+            return naturalCustomer;
     }
 
     public static NaturalCustomer retrieveCustomer(String customerId) {
-        return NaturalCustomerCRUD.retrieveCustomerById(customerId);
+        try {
+            return NaturalCustomerCRUD.retrieveCustomerById(customerId);
+        } catch (RuntimeException e) {
+            throw new DataNotFoundException("customer not found by id "+customerId);
+        }
     }
+
+    public static ArrayList<NaturalCustomer> search(NaturalCustomer naturalCustomer) {
+        try {
+            return NaturalCustomerCRUD.search(naturalCustomer);
+        } catch (RuntimeException e) {
+            throw new DataNotFoundException("no customer found with specified search filters. please try again.");
+        }
+
+
+    }
+
 }

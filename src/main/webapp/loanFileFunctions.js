@@ -14,6 +14,21 @@ function fetchCustomerInfo() {
 }
 
 function showCustomerInfo(firstName, lastName) {
-    document.getElementById("firstName").innerHTML=firstName.toString();
-    document.getElementById("lastName").innerHTML=lastName;
+    if (lastName != "خطا") {
+        document.getElementById("nameHeader").innerHTML = "نام";
+        document.getElementById("lastNameHeader").innerHTML = "نام خانوادگی";
+    }
+    document.getElementById("firstName").innerHTML = firstName.toString();
+    document.getElementById("lastName").innerHTML = lastName.toString();
+
+}
+
+function checkCustomerAvailability() {
+    var lastName = document.getElementById("lastName");
+    if (lastName == "خطا" || lastName == null) {
+        document.getElementById("message").innerHTML = "لطفا مشتری مورد نظر خورد را انتخاب کنید.";
+    }
+    else {
+        return true;
+    }
 }

@@ -1,12 +1,15 @@
 package data_access;
 
 import data_access.entity.NaturalCustomer;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 import util.HibernateUtil;
+import util.LoggerUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,38 +22,6 @@ import java.util.List;
 public class NaturalCustomerCRUD {
     private static ArrayList<NaturalCustomer> naturalCustomers = null;
 
-
-   /* public static void main(String[] args) {
-
-        //creating configuration object
-        Configuration cfg = new Configuration();
-        cfg.configure("hibernate.cfg.xml");//populates the data of the configuration file
-
-        //creating session factory object
-        SessionFactory factory = cfg.buildSessionFactory();
-
-        //creating session object
-        Session session = factory.openSession();
-
-        //creating transaction object
-        Transaction transaction = session.beginTransaction();
-
-        NaturalCustomer naturalCustomer = new NaturalCustomer();
-        naturalCustomer.setFirstName("مهلا");
-        naturalCustomer.setLastName("محمدی");
-        naturalCustomer.setFatherName("حمید");
-        naturalCustomer.setDateOfBirth("2010-2-2");
-        naturalCustomer.setNationalCode("5225271");
-        //naturalCustomer.setNaturalCustomerNumber(naturalCustomer.getCustomerId());
-
-        session.save(naturalCustomer);//persisting the object
-        transaction.commit();//transaction is committed
-        session.close();
-
-        System.out.println("successfully saved");
-
-    }
-*/
     public static void insertIntoNaturalCustomerTable(NaturalCustomer naturalCustomer) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
@@ -58,52 +29,93 @@ public class NaturalCustomerCRUD {
         transaction.commit();
         session.close();
         System.out.println("successfully inserted into table");
-    }
-
-    private static ArrayList<NaturalCustomer> setSearchResult(ResultSet resultSet) throws SQLException {
-        return null;
-    }
-
-    public static ArrayList<NaturalCustomer> findCustomerByFirstName(String name) throws SQLException {
-        return null;
-    }
-
-    public static ArrayList<NaturalCustomer> findCustomerByLastName(String lastName) throws SQLException {
-        return null;
-    }
-
-    public static ArrayList<NaturalCustomer> findCustomerById(String id) {
-        return null;
-    }
-
-    public static ArrayList<NaturalCustomer> findCustomerByNationalCode(String nationalCode) throws SQLException {
-        return null;
+        LoggerUtil.getLogger().info("customer info successfully inserted :");
     }
 
     public static NaturalCustomer updateNaturalCustomerInTable(NaturalCustomer naturalCustomer) {
-        return null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(naturalCustomer);
+        transaction.commit();
+        LoggerUtil.getLogger().info("customer info successfully updated .");
+        transaction.commit();
+        session.close();
+        System.out.println("successfully updated record"+ naturalCustomer.toString());
+        return naturalCustomer;
     }
 
     public static void deleteFromNaturalCustomerTable(int customerId) throws SQLException {
-
-    }
-
-    public static Boolean duplicatedNumber(String nationalCode) throws SQLException {
-        return true;
-    }
-
-    public static Boolean noDuplicateNumberInTable(String nationalCode, int idOfNew) throws SQLException {
-        return true;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        NaturalCustomer naturalCustomer=session.get(NaturalCustomer.class,customerId);
+        session.delete(naturalCustomer);
+        transaction.commit();
+        LoggerUtil.getLogger().info("deleted record from table .");
+        transaction.commit();
+        session.close();
+        System.out.println("successfully deleted record");
     }
 
     public static NaturalCustomer retrieveCustomerById(String customerId) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("From NaturalCustomer naturalCustomer WHERE naturalCustomer.customerId=" + customerId);
+        Query query = session.createQuery("From NaturalCustomer naturalCustomer WHERE naturalCustomer.customerId= :customerId");
         List naturalCustomer = query.list();
         transaction.commit();
         session.close();
         System.out.println("successfully Read from table" + naturalCustomer);
+        LoggerUtil.getLogger().info("retrieved a customer by id.");
         return (NaturalCustomer) naturalCustomer.get(0);
     }
+
+
+    public static ArrayList<NaturalCustomer> search(NaturalCustomer naturalCustomer) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        naturalCustomers = (ArrayList<NaturalCustomer>) searchCriteria(session, naturalCustomer).list();
+        transaction.commit();
+        session.close();
+        System.out.println("successfully Read from table" + naturalCustomers);
+        LoggerUtil.getLogger().info("search customers done successfully. ");
+        return naturalCustomers;
+    }
+
+    private static Criteria searchCriteria(Session session, NaturalCustomer naturalCustomer) {
+
+        Criteria criteria = session.createCriteria(NaturalCustomer.class);
+
+        if ((naturalCustomer.getCustomerId() != null)) {
+            criteria.add(Restrictions.eq("customerId", naturalCustomer.getCustomerId()));
+        }
+        if (naturalCustomer.getNationalCode() != null ) {
+            criteria.add(Restrictions.eq("nationalCode", naturalCustomer.getNationalCode()));
+        }
+        if (naturalCustomer.getFirstName() != null ) {
+            criteria.add(Restrictions.eq("firstName", naturalCustomer.getFirstName()));
+        }
+        if (naturalCustomer.getLastName() != null ) {
+            criteria.add(Restrictions.eq("lastName", naturalCustomer.getLastName()));
+        }
+        return criteria;
+
+    }
+
+    public static List<NaturalCustomer> findCustomerByNationalCode(String nationalCode) {
+        List<NaturalCustomer> naturalCustomers = new ArrayList<NaturalCustomer>();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Query query = session.createQuery("from NaturalCustomer  R where R.nationalCode = :nationalCode");
+        query.setParameter("nationalCode", nationalCode);
+        naturalCustomers = query.list();
+        LoggerUtil.getLogger().info("Found Customer by national code " + nationalCode);
+        session.close();
+        return naturalCustomers;
+    }
+
+//    public static void main(String[] args) {
+//        NaturalCustomer naturalCustomer = new NaturalCustomer();
+//
+//        search(naturalCustomer);
+//    }
+
+
 }

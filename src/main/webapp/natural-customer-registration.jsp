@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link href=cssfile/styleSheet.css rel=stylesheet>
+    <script type="text/javascript" src="/check-nationalcode.js"></script>
     <title>ثبت مشتری حقیقی جدید</title>
 </head>
 <body>
@@ -13,27 +14,27 @@
                 <br>
                 <p>لطفا اطلاعات مشتری را وارد نمایید.</p>
                 <br>
-                <form action="CreateNaturalCustomer" method="post" onsubmit="">
+                <form action="CreateNaturalCustomer" method="post" onsubmit="checkNationalCode(document.getElementById('nationalCode').value())">
                     <table>
                         <tr>
                             <td> نام</td>
-                            <td><input type="text" name="firstName"></td>
+                            <td><input type="text" name="firstName" required></td>
                         </tr>
                         <tr>
                             <td> نام خانوادگی</td>
-                            <td><input type="text" name="lastName"></td>
+                            <td><input type="text" name="lastName" required></td>
                         </tr>
                         <tr>
                             <td>نام پدر</td>
-                            <td><input type="text" name="fatherName"></td>
+                            <td><input type="text" name="fatherName" required></td>
                         </tr>
                         <tr>
                             <td>تاریخ تولد</td>
-                            <td><input type="DATE" name="dateOfBirth"></td>
+                            <td><input type="DATE" name="dateOfBirth" required></td>
                         </tr>
                         <tr>
                             <td>کد ملی</td>
-                            <td><input type="text" name="nationalCode" id="nationalCode">
+                            <td><input type="text" name="nationalCode" id="nationalCode" required>
                             </td>
                         </tr>
                     </table>

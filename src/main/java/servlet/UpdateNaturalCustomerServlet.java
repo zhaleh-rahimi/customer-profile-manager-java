@@ -3,6 +3,7 @@ package servlet;
 import business_logic.NaturalCustomerLogic;
 import business_logic.exceptions.DuplicateInformationException;
 import data_access.entity.NaturalCustomer;
+import util.LoggerUtil;
 import util.MessageUtil;
 
 import javax.servlet.ServletException;
@@ -66,13 +67,15 @@ public class UpdateNaturalCustomerServlet extends HttpServlet {
 
             request.setAttribute("naturalCustomer", naturalCustomer);
             getServletConfig().getServletContext().getRequestDispatcher("/natural-customer-edit-result.jsp").forward(request, response);
+            LoggerUtil.getLogger().info("نمایش اطلاعات مشتری ثبت شده با موفقیت انجام شد.");
         } catch (SQLException e) {
-            e.printStackTrace();
+            LoggerUtil.getLogger().info(e.getMessage());
         }catch (DuplicateInformationException e){
             MessageUtil errorMessageUtil =new MessageUtil();
             errorMessageUtil.info = "شماره ملی وارد شده تکراری می باشد.";
             errorMessageUtil.header = "عملیات ناموفق";
             request.setAttribute("error", errorMessageUtil);
+            LoggerUtil.getLogger().info(e.getMessage());
             getServletConfig().getServletContext().getRequestDispatcher("/natural-customer-edit-result.jsp").forward(request, response);
         }
 
