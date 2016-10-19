@@ -38,14 +38,15 @@ public class LoanTypeCRUD {
     public static LoanType retrieveLoanTypeById(Integer loanTypeId) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("From LoanType loanType WHERE loanType.loanTypeId= :loanTypeId"  );
+        Query query = session.createQuery("From LoanType loanType WHERE loanType.loanTypeId= :loanTypeId "  );
+        query.setParameter("loanTypeId", loanTypeId);
         List loanType = query.list();
         transaction.commit();
         session.close();
         System.out.println("successfully Read from table loan_type" + loanType );
         return (LoanType) loanType.get(0);
     }
-//    public static void main(String[] s){
-//        retrieveLoanTypeById(4);
-//    }
+    public static void main(String[] s){
+        retrieveLoanTypeById(4);
+    }
 }

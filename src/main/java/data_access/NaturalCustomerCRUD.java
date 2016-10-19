@@ -54,7 +54,8 @@ public class NaturalCustomerCRUD {
     public static NaturalCustomer retrieveCustomerById(String customerId) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("From NaturalCustomer naturalCustomer WHERE naturalCustomer.customerId= :customerId");
+        Query query = session.createQuery("From NaturalCustomer naturalCustomer WHERE naturalCustomer.customerId = :customerId ");
+        query.setParameter("customerId", Integer.parseInt(customerId));
         List naturalCustomer = query.list();
         transaction.commit();
         session.close();
@@ -102,11 +103,10 @@ public class NaturalCustomerCRUD {
         return naturalCustomers;
     }
 
-//    public static void main(String[] args) {
-//        NaturalCustomer naturalCustomer = new NaturalCustomer();
-//
-//        search(naturalCustomer);
-//    }
+    public static void main(String[] args) {
+
+        retrieveCustomerById("2");
+    }
 
 
 }
