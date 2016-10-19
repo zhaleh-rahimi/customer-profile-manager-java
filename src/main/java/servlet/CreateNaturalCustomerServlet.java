@@ -5,6 +5,7 @@ import business_logic.exceptions.DuplicateInformationException;
 import business_logic.exceptions.FieldRequiredException;
 import business_logic.exceptions.NationalCodeFormatException;
 import data_access.entity.NaturalCustomer;
+import util.LoggerUtil;
 import util.MessageUtil;
 
 import javax.servlet.ServletException;
@@ -35,7 +36,6 @@ public class CreateNaturalCustomerServlet extends HttpServlet {
             naturalCustomer.setFatherName(request.getParameter("fatherName"));
             naturalCustomer.setDateOfBirth(request.getParameter("dateOfBirth"));
             naturalCustomer.setNationalCode(request.getParameter("nationalCode"));
-
             System.out.println(naturalCustomer.toString());
 
             NaturalCustomerLogic.insertNaturalCustomer(naturalCustomer);
@@ -43,7 +43,7 @@ public class CreateNaturalCustomerServlet extends HttpServlet {
             request.setAttribute("naturalCustomer", naturalCustomer);
             getServletConfig().getServletContext().getRequestDispatcher("/natural-customer-registration-result.jsp").forward(request, response);
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.getMessage();
         } catch (DuplicateInformationException e) {
             MessageUtil.info = "شماره ملی وارد شده تکراری می باشد.";
             MessageUtil.header = "عملیات ناموفق";

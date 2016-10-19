@@ -4,6 +4,7 @@ import business_logic.GrantConditionLogic;
 import business_logic.exceptions.FieldRequiredException;
 import data_access.entity.GrantCondition;
 import data_access.entity.LoanType;
+import util.LoggerUtil;
 import util.MessageUtil;
 
 import javax.servlet.ServletException;
@@ -26,15 +27,12 @@ public class GrantConditionServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
 
-        MessageUtil errorMessageUtil = new MessageUtil();
+        MessageUtil messageUtil = new MessageUtil();
 
         String name= request.getParameter("loanTypeName");
         Float interestRate= Float.valueOf(request.getParameter("interestRate"));
-        System.out.println("test after retrieving interestRate from previous page!");
-
         int rowCount = Integer.valueOf(request.getParameter("rowCount"));
-        System.out.println("rowCount : "+rowCount);
-//        int rowCount=1;
+        System.out.println(rowCount);
         ArrayList<GrantCondition> grantConditions = new ArrayList<GrantCondition>();
 
         try {
@@ -49,17 +47,16 @@ public class GrantConditionServlet extends HttpServlet {
                 grantConditions.add(grantCondition);
             }
             LoanType loanType=new LoanType(name,interestRate);
-
             GrantConditionLogic.insertGrantConditions(loanType,grantConditions);
 
             MessageUtil.info = "ثبت انجام شد.";
             MessageUtil.header = "عملیات موفق";
-            request.setAttribute("error", errorMessageUtil);
+            request.setAttribute("message", messageUtil);
             getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (FieldRequiredException e) {
             MessageUtil.info = "ورود همه فیلدها الزامی است.";
             MessageUtil.header = "عملیات ناموفق";
-            request.setAttribute("error", errorMessageUtil);
+            request.setAttribute("error", messageUtil);
             getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         }
     }

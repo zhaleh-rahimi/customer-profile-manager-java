@@ -1,4 +1,3 @@
-
 function addToTable() {
 
 
@@ -24,14 +23,12 @@ function addToTable() {
         row.insertCell(6).innerHTML = '<button class="button" onClick="deleteRow(this)">حذف</button>';
 
     }
-    
-    
-    }
+}
 function rowCounter() {
     var table = document.getElementById("grantConditionsTable");
-    var rowCount = table.rows.length-1;
-    document.getElementById("rowCount").value=rowCount;
-    }
+    var rowCount = table.rows.length - 1;
+    document.getElementById("rowCount").value = rowCount;
+}
 
 
 function addHeader() {

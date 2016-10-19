@@ -6,9 +6,11 @@ import business_logic.exceptions.DataNotFoundException;
 import business_logic.exceptions.InputNotInRangeException;
 import com.google.gson.JsonObject;
 import data_access.LoanFileCRUD;
+import data_access.LoanTypeCRUD;
 import data_access.entity.LoanFile;
 import data_access.entity.LoanType;
 import data_access.entity.NaturalCustomer;
+import util.LoggerUtil;
 import util.MessageUtil;
 
 import javax.servlet.RequestDispatcher;
@@ -62,9 +64,10 @@ public class LoanFileServlet extends HttpServlet {
             MessageUtil.info = "مقادیر وارد شده در بازه تعریف شده نیست.";
             MessageUtil.header = "عملیات ناموفق";
             request.setAttribute("error", message);
+            LoggerUtil.getLogger().warn("مقادیر ورودی در بازه شروط اعطا صدق نمی کند.");
             getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (DataNotFoundException e) {
-            e.printStackTrace();
+            LoggerUtil.getLogger().warn(e.getMessage());
         }
     }
 
@@ -85,14 +88,13 @@ public class LoanFileServlet extends HttpServlet {
         JsonObject jsonObject = new JsonObject();
         try {
             naturalCustomer = NaturalCustomerLogic.retrieveCustomer(customerId);
-            System.out.println("I have sent the natural customer" + customerId);
             jsonObject.addProperty("firstName", naturalCustomer.getFirstName());
             jsonObject.addProperty("lastName", naturalCustomer.getLastName());
             response.setContentType("application/json");
             response.getWriter().print(jsonObject);
         } catch (DataNotFoundException e) {
-            naturalCustomer.setFirstName("مشتری با این شماره وجود ندارد.");
-            naturalCustomer.setLastName("خطا");
+            naturalCustomer.setFirstName(null);
+            naturalCustomer.setLastName(null);
             jsonObject.addProperty("firstName", naturalCustomer.getFirstName());
             jsonObject.addProperty("lastName", naturalCustomer.getLastName());
             response.setContentType("application/json");

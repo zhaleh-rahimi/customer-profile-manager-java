@@ -33,7 +33,8 @@ public class SearchNaturalCustomerServlet extends HttpServlet {
                 naturalCustomer.setCustomerId(null);
             } else {
                 naturalCustomer.setCustomerId(Integer.valueOf(request.getParameter("customerId")));
-            }if (request.getParameter("firstName").equals("")) {
+            }
+            if (request.getParameter("firstName").equals("")) {
                 naturalCustomer.setFirstName(null);
             } else {
                 naturalCustomer.setFirstName(request.getParameter("firstName"));
@@ -42,13 +43,12 @@ public class SearchNaturalCustomerServlet extends HttpServlet {
                 naturalCustomer.setLastName(null);
             } else {
                 naturalCustomer.setLastName(request.getParameter("lastName"));
-            }if (request.getParameter("nationalCode").equals("")) {
+            }
+            if (request.getParameter("nationalCode").equals("")) {
                 naturalCustomer.setNationalCode(null);
             } else {
                 naturalCustomer.setNationalCode(request.getParameter("nationalCode"));
             }
-
-            System.out.println("search filters are: " + naturalCustomer);
 
             naturalCustomers = NaturalCustomerLogic.search(naturalCustomer);
 
@@ -56,8 +56,7 @@ public class SearchNaturalCustomerServlet extends HttpServlet {
             getServletConfig().getServletContext().getRequestDispatcher("/natural-customer-search-result.jsp").forward(request, response);
 
         } catch (DataNotFoundException e) {
-            LoggerUtil.getLogger().info(e.getMessage());
-
+            e.getMessage();
         }
 
 

@@ -25,13 +25,11 @@ public class LoanTypeServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-        MessageUtil errorMessageUtil=new MessageUtil();
-        LoanType loanType=new LoanType();
+        MessageUtil errorMessageUtil = new MessageUtil();
+        LoanType loanType = new LoanType();
         try {
-
             loanType.setLoanTypeName(request.getParameter("loanTypeName"));
             loanType.setInterestRate(Float.valueOf(request.getParameter("interestRate")));
-            //LoanTypeLogic.insertIntoTable(loanType);
             request.setAttribute("loanType", loanType);
             getServletConfig().getServletContext().getRequestDispatcher("/grant-condition.jsp").forward(request, response);
         } catch (FieldRequiredException e) {

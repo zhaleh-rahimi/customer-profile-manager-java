@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import util.HibernateUtil;
+import util.LoggerUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +17,6 @@ import java.util.List;
  */
 public class LoanFileCRUD {
 
-
-
     public static void create(LoanFile loanFile) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
@@ -26,6 +25,6 @@ public class LoanFileCRUD {
         session.close();
         System.out.println("successfully inserted into table loan_file");
     }
-    public static void main(String[] s) {
-    }
+//    public static void main(String[] s) {
+//    }
 }

@@ -12,21 +12,17 @@ public class LoanTypeLogic {
         if (loanType.getLoanTypeName() == null || loanType.getLoanTypeName().equals("")) {
             throw new FieldRequiredException("وارد کردن نام الزامی است.");
         }
-        if (loanType.getInterestRate() == null || loanType.getInterestRate().equals("")){
+        if (loanType.getInterestRate() == null || loanType.getInterestRate().equals("")) {
             throw new FieldRequiredException("وارد کردن نرخ سود الزامی است.");
         }
         return true;
     }
     public static void insertIntoTable(LoanType loanType) {
         if (validate(loanType)) {
-
-               LoanTypeCRUD.insertIntoLoanTypeTable(loanType);
-
+            LoanTypeCRUD.insertIntoLoanTypeTable(loanType);
         }
     }
-
-
-    public static LoanType retrieveLoanType(Integer loanTypeId) {
+    static LoanType retrieveLoanType(Integer loanTypeId) {
         return LoanTypeCRUD.retrieveLoanTypeById(loanTypeId);
     }
 }

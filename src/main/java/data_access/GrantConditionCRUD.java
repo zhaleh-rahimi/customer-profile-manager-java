@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import util.HibernateUtil;
+import util.LoggerUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +19,11 @@ public class GrantConditionCRUD {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.save(loanType);
-        int id= loanType.getLoanTypeId();
-        for (GrantCondition grantCondition:grantConditions){
+        int id = loanType.getLoanTypeId();
+        for (GrantCondition grantCondition : grantConditions) {
             grantCondition.setLoanTypeId(id);
-            session.save(grantCondition);}
+            session.save(grantCondition);
+        }
         transaction.commit();
         session.close();
         System.out.println("successfully inserted into loan type & grant condition tables");
@@ -34,11 +36,11 @@ public class GrantConditionCRUD {
         List grantConditions = query.list();
         transaction.commit();
         session.close();
-        System.out.println("successfully Read from table loan_type" + grantConditions );
+        System.out.println("successfully Read from table loan_type" + grantConditions);
         return grantConditions;
     }
-    public  static void main(String[] args){
-        retrieveConditionsByLoanTypeId(4);
-    }
+//    public  static void main(String[] args){
+//        retrieveConditionsByLoanTypeId(4);
+//    }
 
 }

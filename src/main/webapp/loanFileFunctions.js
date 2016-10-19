@@ -4,9 +4,13 @@ function fetchCustomerInfo() {
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             var customer = JSON.parse(request.response);
+            if(customer!=null){
             var firstName = customer.firstName;
             var lastName = customer.lastName;
-            showCustomerInfo(firstName, lastName);
+            showCustomerInfo(firstName, lastName);}
+            else{
+                document.getElementById("message").innerHTML = "مشتری با این شماره وجود ندارد.";
+            }
         }
     };
     request.open("GET", "/LoanFileServlet?action=retrieve-customer&customerId=" + customerId, true);
@@ -24,8 +28,8 @@ function showCustomerInfo(firstName, lastName) {
 }
 
 function checkCustomerAvailability() {
-    var lastName = document.getElementById("lastName");
-    if (lastName == "خطا" || lastName == null) {
+    var message = document.getElementById("message");
+    if (message!=null) {
         document.getElementById("message").innerHTML = "لطفا مشتری مورد نظر خورد را انتخاب کنید.";
     }
     else {

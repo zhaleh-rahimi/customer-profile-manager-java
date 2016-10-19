@@ -29,15 +29,12 @@ public class NaturalCustomerCRUD {
         transaction.commit();
         session.close();
         System.out.println("successfully inserted into table");
-        LoggerUtil.getLogger().info("customer info successfully inserted :");
     }
 
     public static NaturalCustomer updateNaturalCustomerInTable(NaturalCustomer naturalCustomer) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.update(naturalCustomer);
-        transaction.commit();
-        LoggerUtil.getLogger().info("customer info successfully updated .");
         transaction.commit();
         session.close();
         System.out.println("successfully updated record"+ naturalCustomer.toString());
@@ -49,8 +46,6 @@ public class NaturalCustomerCRUD {
         Transaction transaction = session.beginTransaction();
         NaturalCustomer naturalCustomer=session.get(NaturalCustomer.class,customerId);
         session.delete(naturalCustomer);
-        transaction.commit();
-        LoggerUtil.getLogger().info("deleted record from table .");
         transaction.commit();
         session.close();
         System.out.println("successfully deleted record");
@@ -64,7 +59,6 @@ public class NaturalCustomerCRUD {
         transaction.commit();
         session.close();
         System.out.println("successfully Read from table" + naturalCustomer);
-        LoggerUtil.getLogger().info("retrieved a customer by id.");
         return (NaturalCustomer) naturalCustomer.get(0);
     }
 
@@ -76,7 +70,6 @@ public class NaturalCustomerCRUD {
         transaction.commit();
         session.close();
         System.out.println("successfully Read from table" + naturalCustomers);
-        LoggerUtil.getLogger().info("search customers done successfully. ");
         return naturalCustomers;
     }
 
@@ -97,7 +90,6 @@ public class NaturalCustomerCRUD {
             criteria.add(Restrictions.eq("lastName", naturalCustomer.getLastName()));
         }
         return criteria;
-
     }
 
     public static List<NaturalCustomer> findCustomerByNationalCode(String nationalCode) {
@@ -106,7 +98,6 @@ public class NaturalCustomerCRUD {
         Query query = session.createQuery("from NaturalCustomer  R where R.nationalCode = :nationalCode");
         query.setParameter("nationalCode", nationalCode);
         naturalCustomers = query.list();
-        LoggerUtil.getLogger().info("Found Customer by national code " + nationalCode);
         session.close();
         return naturalCustomers;
     }

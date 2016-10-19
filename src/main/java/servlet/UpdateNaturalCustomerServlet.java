@@ -75,7 +75,6 @@ public class UpdateNaturalCustomerServlet extends HttpServlet {
             errorMessageUtil.info = "شماره ملی وارد شده تکراری می باشد.";
             errorMessageUtil.header = "عملیات ناموفق";
             request.setAttribute("error", errorMessageUtil);
-            LoggerUtil.getLogger().info(e.getMessage());
             getServletConfig().getServletContext().getRequestDispatcher("/natural-customer-edit-result.jsp").forward(request, response);
         }
 
@@ -87,7 +86,6 @@ public class UpdateNaturalCustomerServlet extends HttpServlet {
         MessageUtil messageUtil =new MessageUtil();
         messageUtil.info = "حذف انجام شد ";
         messageUtil.header = "عملیات موفق";
-        request.setAttribute("error", messageUtil);
         getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
     }
 

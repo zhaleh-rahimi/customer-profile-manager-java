@@ -16,7 +16,7 @@
                 <p>لطفا اطلاعات مشتری را وارد نمایید.</p>
                 <br>
 
-                <form action="UpdateNaturalCustomer" name="edit" method="get" onsubmit="checkNationalCode()">
+                <form action="UpdateNaturalCustomer" name="edit" method="get" onsubmit="checkNationalCode(document.getElementById('nationalCode').value)">
                     <input type="hidden" name="action" value="edit-natural-customer">
                     <%
                         NaturalCustomer naturalCustomer = (NaturalCustomer) request.getAttribute("naturalCustomer");

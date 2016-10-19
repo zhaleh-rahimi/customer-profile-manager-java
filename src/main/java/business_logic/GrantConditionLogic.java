@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class GrantConditionLogic {
     private static Boolean validate(List<GrantCondition> grantConditions) {
-        if (grantConditions == null) {
+        if (grantConditions.isEmpty()) {
             throw new FieldRequiredException("وارد کردن حداقل یک شرط اعطا الزامی است.");
         }
         return true;
@@ -20,12 +20,11 @@ public class GrantConditionLogic {
 
     public static void insertGrantConditions(LoanType loanType, List<GrantCondition> grantConditions) {
         if (validate(grantConditions)) {
-
             GrantConditionCRUD.insertIntoTable(loanType, grantConditions);
         }
     }
 
-    public static List<GrantCondition> retrieveConditionsByLoanTypeId(Integer loanTypeId) {
+    static List<GrantCondition> retrieveConditionsByLoanTypeId(Integer loanTypeId) {
         return GrantConditionCRUD.retrieveConditionsByLoanTypeId(loanTypeId);
     }
 }
