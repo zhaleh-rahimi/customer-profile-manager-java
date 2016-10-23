@@ -52,8 +52,10 @@ public class GrantConditionServlet extends HttpServlet {
             MessageUtil.info = "ثبت انجام شد.";
             MessageUtil.header = "عملیات موفق";
             request.setAttribute("message", messageUtil);
+            LoggerUtil.getLogger().info("نوع و شرایط اعطای تسهیلات با موفقیت ثبت شد.");
             getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (FieldRequiredException e) {
+            LoggerUtil.getLogger().info("عملیات ناموفق!");
             MessageUtil.info = "ورود همه فیلدها الزامی است.";
             MessageUtil.header = "عملیات ناموفق";
             request.setAttribute("error", messageUtil);

@@ -16,7 +16,7 @@
                 <br>
                 <form action="LoanFileServlet" method="get" onsubmit="checkCustomerAvailability()">
                     <input type="text" name="action" value="create-loan-file" hidden>
-                    <table class="grant-table">
+                    <table >
                         <tr>
                             <td>شماره مشتری:</td>
                             <td><input type="text" name="customerId" id="customerId"
@@ -26,13 +26,12 @@
                             </td>
                         </tr>
                     </table>
-                    <br>
                     <table id="customerInfo">
                         <tr><th id="nameHeader"></th><th id="lastNameHeader"></th></tr>
                         <tr><td id="firstName"></td><td id="lastName"></td></tr>
                     </table>
+                    <h3 id="message" style="color: #b80000"></h3>
                     <br>
-                    <p id="message" style="color: #b80000"></p>
                     <hr>
                     <br>
                     <%
@@ -53,11 +52,11 @@
                         <br>
                         <tr>
                             <td>مدت قرارداد</td>
-                            <td><input type="text" name="duration"></td>
+                            <td><input type="text" name="duration" required></td>
                         </tr>
                         <tr>
                             <td>مبلغ قرارداد</td>
-                            <td><input type="text" name="amount"></td>
+                            <td><input type="text" name="amount" required></td>
                         </tr>
                     </table>
                     <input type="submit" class="button" value="ثبت پرونده" >

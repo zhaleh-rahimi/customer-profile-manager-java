@@ -58,16 +58,22 @@ public class LoanFileServlet extends HttpServlet {
             LoanFileLogic.create(customerId, loanTypeId, loanFile);
             MessageUtil.info = "پرونده تسهیلاتی با موفقیت ثبت شد";
             MessageUtil.header = "عملیات موفق";
+            LoggerUtil.getLogger().info("پرونده تسهیلاتی با موفقیت ثبت شد");
             request.setAttribute("message", message);
             getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (InputNotInRangeException e) {
-            MessageUtil.info = "مقادیر وارد شده در بازه تعریف شده نیست.";
+            MessageUtil.info = e.getMessage();
             MessageUtil.header = "عملیات ناموفق";
             request.setAttribute("error", message);
-            LoggerUtil.getLogger().warn("مقادیر ورودی در بازه شروط اعطا صدق نمی کند.");
+            LoggerUtil.getLogger().warn(e.getMessage());
             getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (DataNotFoundException e) {
             LoggerUtil.getLogger().warn(e.getMessage());
+            MessageUtil.info = e.getMessage();
+            MessageUtil.header = "عملیات ناموفق";
+            request.setAttribute("error", message);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+            dispatcher.forward(request, response);
         }
     }
 
@@ -75,9 +81,7 @@ public class LoanFileServlet extends HttpServlet {
         String customerId = "";
         request.setAttribute("customerId", customerId);
         ArrayList<LoanType> loanTypes = LoanFileLogic.findLoanTypes();
-        System.out.println("I can fetch loan types ");
         request.setAttribute("loanTypes", loanTypes);
-        System.out.println("I have sent loan types ");
         RequestDispatcher dispatcher = request.getRequestDispatcher("/loan-file.jsp");
         dispatcher.forward(request, response);
     }
@@ -88,17 +92,20 @@ public class LoanFileServlet extends HttpServlet {
         JsonObject jsonObject = new JsonObject();
         try {
             naturalCustomer = NaturalCustomerLogic.retrieveCustomer(customerId);
+            System.out.println(naturalCustomer.getFirstName()+" ,"+naturalCustomer.getLastName());
             jsonObject.addProperty("firstName", naturalCustomer.getFirstName());
             jsonObject.addProperty("lastName", naturalCustomer.getLastName());
             response.setContentType("application/json");
             response.getWriter().print(jsonObject);
+            LoggerUtil.getLogger().info("مشتری بازیابی شد");
         } catch (DataNotFoundException e) {
+            System.out.println(e.getMessage());
             naturalCustomer.setFirstName(null);
             naturalCustomer.setLastName(null);
-            jsonObject.addProperty("firstName", naturalCustomer.getFirstName());
-            jsonObject.addProperty("lastName", naturalCustomer.getLastName());
+            jsonObject=null;
             response.setContentType("application/json");
             response.getWriter().print(jsonObject);
+            LoggerUtil.getLogger().info(e.getMessage());
         }
     }
 

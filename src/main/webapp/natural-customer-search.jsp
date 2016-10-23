@@ -12,7 +12,7 @@
             <div class="layer-in">
                 <br>
                 <br>
-                <p>جستجو بر اساس</p>
+                <p>جستجوی مشتری :</p>
                 <div class="search-box">
                     <form action="SearchNaturalCustomer" method="post" >
                         <table>

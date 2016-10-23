@@ -3,15 +3,11 @@ package data_access;
 import data_access.entity.NaturalCustomer;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 import util.HibernateUtil;
-import util.LoggerUtil;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +22,9 @@ public class NaturalCustomerCRUD {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.save(naturalCustomer);
+        int id = naturalCustomer.getId();
+        naturalCustomer.setCustomerId(id);
+        session.save(naturalCustomer);
         transaction.commit();
         session.close();
         System.out.println("successfully inserted into table");
@@ -37,21 +36,21 @@ public class NaturalCustomerCRUD {
         session.update(naturalCustomer);
         transaction.commit();
         session.close();
-        System.out.println("successfully updated record"+ naturalCustomer.toString());
+        System.out.println("successfully updated record" + naturalCustomer.toString());
         return naturalCustomer;
     }
 
     public static void deleteFromNaturalCustomerTable(int customerId) throws SQLException {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        NaturalCustomer naturalCustomer=session.get(NaturalCustomer.class,customerId);
+        NaturalCustomer naturalCustomer = session.get(NaturalCustomer.class, customerId);
         session.delete(naturalCustomer);
         transaction.commit();
         session.close();
         System.out.println("successfully deleted record");
     }
 
-    public static NaturalCustomer retrieveCustomerById(String customerId) {
+    public static List<NaturalCustomer> retrieveCustomerById(String customerId) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         Query query = session.createQuery("From NaturalCustomer naturalCustomer WHERE naturalCustomer.customerId = :customerId ");
@@ -60,7 +59,7 @@ public class NaturalCustomerCRUD {
         transaction.commit();
         session.close();
         System.out.println("successfully Read from table" + naturalCustomer);
-        return (NaturalCustomer) naturalCustomer.get(0);
+        return naturalCustomer;
     }
 
 
@@ -81,13 +80,13 @@ public class NaturalCustomerCRUD {
         if ((naturalCustomer.getCustomerId() != null)) {
             criteria.add(Restrictions.eq("customerId", naturalCustomer.getCustomerId()));
         }
-        if (naturalCustomer.getNationalCode() != null ) {
+        if (naturalCustomer.getNationalCode() != null) {
             criteria.add(Restrictions.eq("nationalCode", naturalCustomer.getNationalCode()));
         }
-        if (naturalCustomer.getFirstName() != null ) {
+        if (naturalCustomer.getFirstName() != null) {
             criteria.add(Restrictions.eq("firstName", naturalCustomer.getFirstName()));
         }
-        if (naturalCustomer.getLastName() != null ) {
+        if (naturalCustomer.getLastName() != null) {
             criteria.add(Restrictions.eq("lastName", naturalCustomer.getLastName()));
         }
         return criteria;

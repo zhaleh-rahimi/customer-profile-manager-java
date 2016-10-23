@@ -51,11 +51,12 @@ public class SearchNaturalCustomerServlet extends HttpServlet {
             }
 
             naturalCustomers = NaturalCustomerLogic.search(naturalCustomer);
-
+            LoggerUtil.getLogger().info("جستجوبا موفقیت انجام شد.");
             request.setAttribute("naturalCustomers", naturalCustomers);
             getServletConfig().getServletContext().getRequestDispatcher("/natural-customer-search-result.jsp").forward(request, response);
 
         } catch (DataNotFoundException e) {
+            LoggerUtil.getLogger().info("مشتری با این مشخصات یافت نشد!");
             e.getMessage();
         }
 

@@ -104,12 +104,17 @@ body {
 }
 
 .button1 {
-    background-color: #0b5620;
-    border: solid #0b5620;
+    width: 50px;
+    float:right;
+    border-radius: 2em;
+    background-color: #ff9200;
+    border: solid #ff9200;
     color: white;
+    padding: 5px 5px;
+    margin: 5px 5px;
     text-align: center;
     text-decoration: none;
-    display: block;
+    display: inline-block;
     font-family: farsiFont;
 
 }
@@ -155,6 +160,7 @@ body {
     background-color: white;
     color: #ff9200;
 }
+
 
 .grant-table {
     border-collapse: collapse;
@@ -232,6 +238,7 @@ th, td {
     text-align: center;
 }
 
+
 #customers {
     border-collapse: collapse;
     width: 100%;
@@ -258,14 +265,31 @@ th, td {
     color: white;
 }
 
-#btn1, #btn2 {
+#btn1 {
+    width: 60px;
     background-color: #0b5620;
     border: solid #0b5620;
     color: white;
+    padding: 5px 5px;
+    margin: 5px 5px;
     text-align: center;
     text-decoration: none;
-    display: block;
+    display: inline-block;
     font-family: farsiFont;
+}
+#btn2 {
+    width: 75px;
+    background-color: #0b5620;
+    border-color: #0b5620;
+    color: white;
+    padding: 5px 5px;
+    margin: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    font-family: farsiFont;
+
 }
 
 

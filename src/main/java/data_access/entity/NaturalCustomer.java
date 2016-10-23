@@ -10,6 +10,7 @@ public class NaturalCustomer {
     private String dateOfBirth;
     private String nationalCode;
     private Integer customerId;
+    private Integer id;
 
     public NaturalCustomer(String firstName, String lastName, String fatherName, String dateOfBirth, String nationalCode, Integer customerId) {
         this.firstName = firstName;
@@ -21,6 +22,11 @@ public class NaturalCustomer {
     }
 
     public NaturalCustomer() {
+    }
+
+    public NaturalCustomer(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public String getFirstName() {
@@ -71,10 +77,19 @@ public class NaturalCustomer {
         this.customerId = customerId;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
-        return "first name:"+getFirstName() + " ,last name: " + getLastName() + ", father name: " + getFatherName() +
-                ", date of birth: " + getDateOfBirth() + ", national code: " + getNationalCode()+" , customer id:" +getCustomerId() ;
+        return "first name:" + getFirstName() + " ,last name: " + getLastName() + ", father name: " + getFatherName() +
+                ", date of birth: " + getDateOfBirth() + ", national code: " + getNationalCode() + " , customer id:" + getCustomerId();
     }
+
 
 }

@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <link href=cssfile/styleSheet.css rel=stylesheet>
+    <script type="text/javascript" src="/confirm-delete.js"></script>
     <title>جستجوی مشتری حقیقی</title>
 </head>
 <body>
@@ -19,7 +20,10 @@
                 %>
                 <br>
                 <br>
-                <p>نتایج جستجو</p>
+                <h2> نتایج جستجو :</h2>
+                <h3 style="color: #4CAF50" id="header"></h3>
+                <h4 style="color: #4CAF50" id="info"></h4>
+                <br>
                 <table id="customers">
                     <thead>
                     <tr>
@@ -62,11 +66,11 @@
                         </td>
 
                         <td>
-                            <a href="UpdateNaturalCustomer?action=delete-natural-customer&id=<%=naturalCustomer.getCustomerId() %>"
-                               class=form id="btn1" onclick="                               "> حذف</a>
+                            <Button id="btn2" value="حذف"
+                               onclick="confirmDelete('UpdateNaturalCustomer?action=delete-natural-customer&id=<%=naturalCustomer.getCustomerId()%>')">حذف</Button>
 
                             <a href="UpdateNaturalCustomer?action=send-to-edit-page-natural-customer&id=<%=naturalCustomer.getCustomerId()%>&firstName=<%=naturalCustomer.getFirstName()%>&lastName=<%=naturalCustomer.getLastName()%>&fatherName=<%=naturalCustomer.getFatherName()%>&dateOfBirth=<%=naturalCustomer.getDateOfBirth()%>&nationalCode=<%=naturalCustomer.getNationalCode()%>"
-                               class=form id="btn2">ویرایش</a>
+                               id="btn1">ویرایش</a>
 
                         </td>
 

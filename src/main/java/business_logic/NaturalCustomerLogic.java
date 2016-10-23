@@ -76,11 +76,16 @@ public class NaturalCustomerLogic {
     }
 
     public static NaturalCustomer retrieveCustomer(String customerId) {
-        try {
-            return NaturalCustomerCRUD.retrieveCustomerById(customerId);
-        } catch (RuntimeException e) {
-            throw new DataNotFoundException("customer not found by id "+customerId);
+
+        List<NaturalCustomer> naturalCustomers = NaturalCustomerCRUD.retrieveCustomerById(customerId);
+        if (naturalCustomers.isEmpty()) {
+            System.out.println("not found customer and will be redirected to exception handling");
+            throw new DataNotFoundException("مشتری با این شماره یافت نشد! ");
+        } else {
+            return naturalCustomers.get(0);
         }
+
+
     }
 
     public static ArrayList<NaturalCustomer> search(NaturalCustomer naturalCustomer) {

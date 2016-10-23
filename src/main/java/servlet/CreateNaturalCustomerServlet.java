@@ -39,12 +39,13 @@ public class CreateNaturalCustomerServlet extends HttpServlet {
             System.out.println(naturalCustomer.toString());
 
             NaturalCustomerLogic.insertNaturalCustomer(naturalCustomer);
-
+            LoggerUtil.getLogger().info("مشتری با موفقیت ثبت شد.");
             request.setAttribute("naturalCustomer", naturalCustomer);
             getServletConfig().getServletContext().getRequestDispatcher("/natural-customer-registration-result.jsp").forward(request, response);
         } catch (SQLException e) {
             e.getMessage();
         } catch (DuplicateInformationException e) {
+            LoggerUtil.getLogger().info("شماره ملی وارد شده تکراری می باشد.");
             MessageUtil.info = "شماره ملی وارد شده تکراری می باشد.";
             MessageUtil.header = "عملیات ناموفق";
             request.setAttribute("error", errorMessageUtil);
@@ -55,6 +56,7 @@ public class CreateNaturalCustomerServlet extends HttpServlet {
             request.setAttribute("error", errorMessageUtil);
             getServletConfig().getServletContext().getRequestDispatcher("/natural-customer-registration-result.jsp").forward(request, response);
         }catch (NationalCodeFormatException e){
+            LoggerUtil.getLogger().info("کد ملی نامعتبر است.");
             MessageUtil.info = "کد ملی معتبر نمی باشد";
             MessageUtil.header = "عملیات ناموفق";
             request.setAttribute("error", errorMessageUtil);
