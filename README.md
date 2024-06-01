@@ -1,4 +1,4 @@
-# myFourthApp
+# Customer-profile-manager
 ### an app to manage natural customers profiles, including:
 - create customer
 - search customer
